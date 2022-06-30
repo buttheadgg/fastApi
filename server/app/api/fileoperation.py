@@ -29,12 +29,12 @@ async def create_upload_file(
         user: User = Depends(get_current_user)
 ):
     now = datetime.now()
+    code = now.strftime("%Y%m%d%H%M%S")
     try:
-
         for file in files:
             new_filename = str(uuid.uuid4()) + '.jpg'
-            db.add_new_data_to_database(now.strftime("%Y%m%d%H%M%S"), file.filename)
-            mm.add_new_data_to_minio(now.strftime("%Y%m%d"), new_filename, file)
+            db.add_new_data_to_database(code, file.filename)
+            mm.add_new_data_to_minio(code, new_filename, file)
 
         db.session.commit()
     except Exception as e:
@@ -45,7 +45,7 @@ async def create_upload_file(
     else:
         return JSONResponse(
             status_code=status.HTTP_200_OK,
-            content={"result": 'result'}
+            content={"result": code}
         )
 
 @router.get("/frames/{code}")
