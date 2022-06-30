@@ -10,3 +10,4 @@ aiofiles~=0.8.0
 minio
 anyio
 requests
+pytest

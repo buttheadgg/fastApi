@@ -14,7 +14,7 @@ email = Column(String, unique=True)
 username = Column(String, unique=True)
 password_hash = Column(String)
 
-SQLALCHEMY_DATABASE_URL = f"postgresql://{id}:{email}@{username}/{password_hash}"
+SQLALCHEMY_DATABASE_URL = 'sqlite:///./database_test.sqlite3'
 
 engine = create_engine(
     settings.database_url,

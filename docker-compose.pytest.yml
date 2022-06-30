@@ -1,0 +1,8 @@
+version: "3.3"
+services:
+  python:
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile.pytest
+    volumes:
+      - ./server/:/usr/src/server/
